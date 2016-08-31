@@ -1,8 +1,13 @@
+#include <iostream>
+#include <utility>
 #include "etl.h"
 
-std::map<char, int> etl::transform(std::map<int, std::vector<char> > xx)
+std::map<char, int> etl::transform(std::map<int, std::vector<char> > old_format)
 {
-  std::cout <<"hi from transform" << std::endl;
-  std::map<char, int> puta{{'A', 1}};
-  return puta;
+  std::map<char, int> new_format;
+  for (auto const &entry : old_format)
+    for (auto const &letter : entry.second)
+      new_format.emplace(tolower(letter), entry.first);
+
+  return new_format;
 }
