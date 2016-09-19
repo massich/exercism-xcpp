@@ -4,9 +4,9 @@
 #include "word_count.h"
 
 
-std::map<std::string, int> word_count::words(const std::basic_string<char> &s)
+std::map<std::string, int> word_count::words(std::basic_string<char> const &s)
 {
-  const std::istringstream iss{s};
+  std::istringstream iss{s};
   std::map<std::string, int> word_occurrences;
   std::string crr_word;
 
