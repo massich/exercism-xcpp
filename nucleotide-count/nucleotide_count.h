@@ -6,7 +6,7 @@ namespace dna{
   class counter {
   public:
     counter( std::string const &seq );
-    Collection nucleotide_counts();
+    Collection nucleotide_counts() const;
     int count(const char &c);
   private:
     Collection occurrences;

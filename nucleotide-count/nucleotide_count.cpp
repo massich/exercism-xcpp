@@ -1,6 +1,7 @@
 #include "nucleotide_count.h"
 
-dna::counter dna::counter( std::string const &seq )
+dna::counter::counter ( std::string const &seq ):
+  occurrences({ {'A', 0}, {'T', 0}, {'C', 0}, {'G', 0} })
 {
 
   for (auto c : seq)
@@ -13,8 +14,8 @@ dna::counter dna::counter( std::string const &seq )
   }
 }
 
-Collection dna::counter::nucleotide_counts( const std::string &s){
-  return { {'A', 0}, {'T', 0}, {'C', 0}, {'G', 0} };
+dna::Collection dna::counter::nucleotide_counts() const {
+  return occurrences;
 }
 int dna::counter::count(const char &c){
   return 0;
