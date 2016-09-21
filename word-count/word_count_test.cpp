@@ -15,7 +15,6 @@ BOOST_AUTO_TEST_CASE(counts_one_word)
     REQUIRE_EQUAL_CONTAINERS(expected, actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 BOOST_AUTO_TEST_CASE(counts_one_of_each)
 {
     const map<string, int> expected{{"one", 1}, {"of", 1}, {"each", 1}};
@@ -47,7 +46,7 @@ BOOST_AUTO_TEST_CASE(includes_numbers)
 {
     const map<string, int> expected{{"testing", 2}, {"1", 1}, {"2", 1}};
 
-    const auto actual = word_count::words("testing, 1, 2 testing");
+    const auto actual = word_count::words("Testing, 1, 2 testing");
 
     REQUIRE_EQUAL_CONTAINERS(expected, actual);
 }
@@ -118,4 +117,5 @@ BOOST_AUTO_TEST_CASE(with_apostrophes_as_quotes)
 
     REQUIRE_EQUAL_CONTAINERS(expected, actual);
 }
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
