@@ -13,7 +13,6 @@ BOOST_AUTO_TEST_CASE(test_1)
     BOOST_REQUIRE_EQUAL(expected, actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 BOOST_AUTO_TEST_CASE(test_2)
 {
     const auto actual = gigasecond::advance(boost::gregorian::date(1977, 6, 14));
@@ -29,4 +28,5 @@ BOOST_AUTO_TEST_CASE(test_3)
     const boost::gregorian::date expected(1991, 3, 28);
     BOOST_REQUIRE_EQUAL(expected, actual);
 }
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
