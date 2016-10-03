@@ -1,7 +1,8 @@
 #include "anagram.h"
 #include <iostream>
 #include <utility>
-#include <clocale>
+#include <locale>
+#include <algorithm>
 
 template<typename T1, typename T2>
 std::ostream &operator<<(std::ostream &stream, const std::map<T1, T2>& map)
@@ -32,7 +33,10 @@ std::map<char, int> compute_histogram( const std::string & s)
   return my_hist;
 }
 
-anagram::anagram::anagram(const std::string &s): word_hist(compute_histogram(s)) {};
+anagram::anagram::anagram(const std::string &s): word_hist(compute_histogram(s)), word(s)
+{
+  std::transform(word.begin(), word.end(), word.begin(), ::tolower);
+};
 
 
 std::vector<std::string> anagram::anagram::matches(const std::vector<std::string> & candidates) const
@@ -41,16 +45,11 @@ std::vector<std::string> anagram::anagram::matches(const std::vector<std::string
 
   for (const auto &cand : candidates)
   {
+    std::string lowcase_cand = cand;
+    std::transform(lowcase_cand.begin(), lowcase_cand.end(), lowcase_cand.begin(), ::tolower);
     const auto candidate_histogram = compute_histogram(cand);
-    if (candidate_histogram == word_hist)
+    if (candidate_histogram == word_hist && lowcase_cand != word)
       valid_anagrams.push_back(cand);
   }
-  // std::cout << "[" << word_hist << "]  These are the candidates: {";
-  // for (auto const &c : candidates)
-  //   std::cout << c << ", ";
-  // std::cout << "} --> {";
-  // for (auto const &v : valid_anagrams)
-  //   std::cout << v << ", ";
-  // std::cout << "}\n";
   return valid_anagrams;
 }
