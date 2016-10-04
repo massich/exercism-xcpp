@@ -7,9 +7,10 @@ namespace dna{
   public:
     counter( std::string const &seq );
     Collection nucleotide_counts() const;
-    int count(const char &c);
+    int count(char const c) const;
   private:
     Collection occurrences;
+    void add_occurrence(char const c);
   };
 
 }
